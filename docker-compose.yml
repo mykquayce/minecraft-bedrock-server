@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  minecraft-bedrock-server:
+    image: eassbhhtgu/minecraft-bedrock-server:latest
+    environment:
+      DIFFICULTY: normal
+      EULA: "TRUE"
+      GAMEMODE: survival
+      LEVEL_TYPE: LARGEBIOMES
+      MAX_BUILD_HEIGHT: 256
+      MAX_MEMORY: 2G
+      MAX_PLAYERS: 100
+      VIEW_DISTANCE: 15
+    ports:
+    - 19132:19132/udp
+    - 19133:19133/udp
+    volumes:
+    - ~/minecraft/config:/config:rw
+    - ~/minecraft/data:/data:rw
+    - ~/minecraft/mods:/mods:rw

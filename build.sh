@@ -2,7 +2,7 @@
 
 
 # get the webpage
-html=$(curl --silent --url https://www.minecraft.net/en-us/download/server/bedrock/)
+html=$(curl --silent --url https://www.minecraft.net/en-us/download/server/bedrock)
 
 
 # scrape html
@@ -12,13 +12,18 @@ uri=$(echo -n $html | \
 		--perl-regex "https:\/\/minecraft\.azureedge\.net\/bin-linux\/bedrock-server-\d+\.\d+\.\d+\.\d+\.zip")
 
 
+if [ -z "$uri" ]; then
+	echo "failed to scrape link from webpage"
+	exit 1
+fi
+
+
 # scrape filename
 file_name=$(echo -n $uri | grep --ignore-case --only-matching --perl-regex "bedrock-server-\d+\.\d+\.\d+\.\d+.zip")
 
 
 # scrape version
 version=$(echo -n $file_name | grep --only-matching --perl-regex "\d+\.\d+\.\d+\.\d+")
-echo $version
 
 
 # edit Dockerfile with the new version

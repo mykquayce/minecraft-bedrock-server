@@ -18,12 +18,21 @@ if [ -z "$uri" ]; then
 fi
 
 
+echo uri: $uri
+
+
 # scrape filename
 file_name=$(echo -n $uri | grep --ignore-case --only-matching --perl-regex "bedrock-server-\d+\.\d+\.\d+\.\d+.zip")
 
 
+echo file_name: $file_name
+
+
 # scrape version
 version=$(echo -n $file_name | grep --only-matching --perl-regex "\d+\.\d+\.\d+\.\d+")
+
+
+echo version: $version
 
 
 # edit Dockerfile with the new version

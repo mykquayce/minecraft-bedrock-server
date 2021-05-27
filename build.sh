@@ -65,12 +65,12 @@ cat ./Dockerfile | \
 
 
 # docker : make the tags
-image="eassbhhtgu/minecraft-bedrock-server"
+image=eassbhhtgu/minecraft-bedrock-server
 tag1=$image:$(echo -n $version | grep --perl-regex --only-matching "^\d+")
 tag2=$image:$(echo -n $version | grep --perl-regex --only-matching "^\d+\.\d+")
 tag3=$image:$(echo -n $version | grep --perl-regex --only-matching "^\d+\.\d+\.\d+")
 tag4=$image:$version
-tag5="$image:latest"
+tag5=$image:latest
 
 
 # docker : build
@@ -78,4 +78,8 @@ docker build --tag $tag1 --tag $tag2 --tag $tag3 --tag $tag4 --tag $tag5 .
 
 
 # docker : push
-docker push $image
+docker push tag1
+docker push tag2
+docker push tag3
+docker push tag4
+docker push tag5

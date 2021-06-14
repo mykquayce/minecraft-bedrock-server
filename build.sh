@@ -78,8 +78,8 @@ docker build --tag $tag1 --tag $tag2 --tag $tag3 --tag $tag4 --tag $tag5 .
 
 
 # docker : push
-docker push tag1
-docker push tag2
-docker push tag3
-docker push tag4
-docker push tag5
+docker push $tag1
+docker push $tag2
+docker push $tag3
+docker push $tag4
+docker push $tag5

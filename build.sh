@@ -9,7 +9,7 @@ html=$(curl --silent --url https://www.minecraft.net/en-us/download/server/bedro
 uri=$(echo -n $html | \
 	grep --ignore-case \
 		--only-matching \
-		--perl-regex "https:\/\/minecraft\.azureedge\.net\/bin-linux\/bedrock-server-\d+\.\d+\.\d+\.\d+\.zip")
+		--extended-regexp "https:\/\/minecraft\.azureedge\.net\/bin-linux\/bedrock-server-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\.zip")
 
 
 if [ -z "$uri" ]; then
@@ -22,14 +22,14 @@ echo uri: $uri
 
 
 # scrape filename
-file_name=$(echo -n $uri | grep --ignore-case --only-matching --perl-regex "bedrock-server-\d+\.\d+\.\d+\.\d+.zip")
+file_name=$(echo -n $uri | grep --ignore-case --only-matching --extended-regexp "bedrock-server-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+.zip")
 
 
 echo file_name: $file_name
 
 
 # scrape version
-version=$(echo -n $file_name | grep --only-matching --perl-regex "\d+\.\d+\.\d+\.\d+")
+version=$(echo -n $file_name | grep --only-matching --extended-regexp "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+")
 
 
 echo version: $version
@@ -66,9 +66,9 @@ cat ./Dockerfile | \
 
 # docker : make the tags
 image=eassbhhtgu/minecraft-bedrock-server
-tag1=$image:$(echo -n $version | grep --perl-regex --only-matching "^\d+")
-tag2=$image:$(echo -n $version | grep --perl-regex --only-matching "^\d+\.\d+")
-tag3=$image:$(echo -n $version | grep --perl-regex --only-matching "^\d+\.\d+\.\d+")
+tag1=$image:$(echo -n $version | grep --extended-regexp --only-matching "^[0-9]+")
+tag2=$image:$(echo -n $version | grep --extended-regexp --only-matching "^[0-9]+\.[0-9]+")
+tag3=$image:$(echo -n $version | grep --extended-regexp --only-matching "^[0-9]+\.[0-9]+\.[0-9]+")
 tag4=$image:$version
 tag5=$image:latest
 

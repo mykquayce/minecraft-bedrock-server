@@ -1,5 +1,5 @@
 FROM ubuntu:latest AS unzip
-ARG version=1.19.31.01
+ARG version=1.19.40.02
 RUN apt-get update && apt-get install --assume-yes curl unzip
 RUN curl --output ./bedrock-server.zip --url https://minecraft.azureedge.net/bin-linux/bedrock-server-$version.zip
 RUN unzip ./bedrock-server.zip -d ./bedrock-server -x *.debug

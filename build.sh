@@ -73,6 +73,10 @@ tag4=$image:$version
 tag5=$image:latest
 
 
+# docker : pull
+docker pull ubuntu:latest
+
+
 # docker : build
 docker build --tag $tag1 --tag $tag2 --tag $tag3 --tag $tag4 --tag $tag5 .
 

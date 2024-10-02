@@ -1,7 +1,9 @@
 FROM ubuntu:latest AS unzip
 ARG version=1.21.30.03
 RUN apt-get update && apt-get install --assume-yes curl unzip
-RUN curl --output ./bedrock-server.zip --url https://minecraft.azureedge.net/bin-linux/bedrock-server-$version.zip
+RUN curl --output './bedrock-server.zip' \
+	--url "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-$version.zip" \
+	--user-agent 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405'
 RUN unzip ./bedrock-server.zip -d ./bedrock-server -x *.debug
 
 FROM ubuntu:latest AS run

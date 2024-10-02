@@ -9,7 +9,7 @@ html=$(curl --silent --url https://www.minecraft.net/en-us/download/server/bedro
 uri=$(echo -n $html | \
 	grep --ignore-case \
 		--only-matching \
-		--extended-regexp "https:\/\/minecraft\.azureedge\.net\/bin-linux\/bedrock-server-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\.zip")
+		--extended-regexp "https:\/\/www\.minecraft\.net\/bedrockdedicatedserver\/bin-linux\/bedrock-server-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\.zip")
 
 
 if [ -z "$uri" ]; then

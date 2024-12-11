@@ -1,5 +1,5 @@
 FROM ubuntu:latest AS unzip
-ARG version=1.21.50.10
+ARG version=1.21.51.01
 RUN apt-get update && apt-get install --assume-yes curl unzip
 RUN curl --output './bedrock-server.zip' \
 	--url "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-$version.zip" \
